@@ -136,7 +136,7 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
           let time = date.slice(date.indexOf('T')+1);
           if(time < '09:00' || time > '17:00'){
             error = "time slot between 09:00am to 05:00pm"
-          }else if(time < new Date().toTimeString().slice(0,5)){
+          }else if(date < new Date().toISOString().split("T")[0] + "T"+new Date().toTimeString().slice(0,6)){
                error = `select ${new Date().toTimeString().slice(0,5)} above`
           }
          }
