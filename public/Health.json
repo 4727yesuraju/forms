@@ -1,0 +1,4 @@
+{
+    "ExerciseFrequency":["Daily", "Weekly", "Monthly", "Rarely"],
+    "DietPreference":["Vegetarian", "Vegan", "Non-Vegetarian"]
+}

@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+input:focus{
+    outline:none;
+}
+
+label:hover{
+    cursor: pointer;
+}
+
+input[type=checkbox]:hover{
+    cursor: pointer;
+}
+
+::-webkit-scrollbar{
+    display:none;
+}
