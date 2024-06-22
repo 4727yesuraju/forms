@@ -6,9 +6,9 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
 
 
     const navigate = useNavigate();
+
     function isValidName(name){
         let error = null;
-        console.log(name);
         if(!name) {
             error = "name must be required!"
         }
@@ -200,7 +200,6 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
             if(formData.experience) delete formData.experience;
         }
 
-        setFormData({...formData,type:"Survey Form"});
         localStorage.setItem('data',JSON.stringify(formData));
         navigate("/result")
     }
@@ -274,8 +273,6 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
        fetchData(formData.surveyTopics);
     },[formData.surveyTopics])
 
-    console.log("formData : ",formData);
-    console.log("errorData : ",errorData);
 
   return (
     <div className="h-screen flex items-center justify-center  ">

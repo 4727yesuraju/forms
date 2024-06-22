@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export default function Level({formData,setFormData,errorData,setErrorData}) {
+export default function Event({formData,setFormData,errorData,setErrorData}) {
 
     /*        
         Tasks:
@@ -34,7 +34,6 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
 
     function isValidName(name){
         let error = null;
-        console.log(name);
         if(!name) {
             error = "name must be required!"
         }
@@ -101,7 +100,6 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
         const isEmailError = isValidEmail(formData.email);
         const isAgeError = isNumber(formData.age);
         const isGuestNameError = ( !formData.isAttend ||  isValidGuestName(formData.guestName));
-        console.log("guestError :",isGuestNameError);
        if (
         !isNameError ||
         !isEmailError||

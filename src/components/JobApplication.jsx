@@ -1,16 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+/*        
+       Form Type: Job Application Form
+            Tasks:
+            1. Form Fields:
+                ○ Full Name (Text)
+                ○ Email (Email)
+                ○ Phone Number (Number)
+                ○ Applying for Position (Dropdown: Developer, Designer, Manager)
+                ○ Relevant Experience (Number of years, visible if "Developer" or "Designer"
+                is selected)
+                ○ Portfolio URL (Text, visible if "Designer" is selected)
+                ○ Management Experience (Text, visible if "Manager" is selected)
+                ○ Additional Skills (Multiple checkboxes: JavaScript, CSS, Python, etc.)
+                ○ Preferred Interview Time (Date and Time Picker)
+            2. Conditional Logic:
+                ○ Show "Relevant Experience" if "Developer" or "Designer" is selected.
+                ○ Show "Portfolio URL" if "Designer" is selected.
+                ○ Show "Management Experience" if "Manager" is selected.
+            3. Validation:
+                ○ Full Name: Required
+                ○ Email: Required and must be a valid email format
+                ○ Phone Number: Required and must be a valid number
+                ○ Relevant Experience: Required if "Developer" or "Designer" is selected, and
+                must be a number greater than 0
+                ○ Portfolio URL: Required if "Designer" is selected, and must be a valid URL
+                ○ Management Experience: Required if "Manager" is selected
+                ○ Additional Skills: At least one skill must be selected
+                ○ Preferred Interview Time: Required and must be a valid date and time
+*/
+
 export default function Level({formData,setFormData,errorData,setErrorData}) {
 
-  
     const navigate = useNavigate();
 
     useEffect(()=>{
         setFormData({type : "Job Application Form"});
         setErrorData({})
     },[]);
-
 
     function isValidURL(url){
         try {
@@ -25,7 +53,6 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
 
     function isValidName(name){
         let error = null;
-        console.log(name);
         if(!name) {
             error = "name must be required!"
         }
@@ -107,7 +134,6 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
             error = "select interiew date";
          }else{
           let time = date.slice(date.indexOf('T')+1);
-          console.log("time :",time);
           if(time < '09:00' || time > '17:00'){
             error = "time slot between 09:00am to 05:00pm"
           }else if(time < new Date().toTimeString().slice(0,5)){
@@ -159,8 +185,6 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
         navigate('/result');
     }
 
-
-
     function handleChange(e){
         if(e.target.id==='position' && e.target.value) errorData.positionError = "select atleast one positions"
 
@@ -177,41 +201,10 @@ export default function Level({formData,setFormData,errorData,setErrorData}) {
         setFormData({...formData,[e.target.id]:e.target.value})
     }
 
-    console.log("formData : ",formData);
-    console.log("errorData : ",errorData);
-
     const positions = ["select position","Developer", "Designer", "Manager"];
     const skills = ["JavaScript", "CSS", "Python", "Java", "HTML", "NodeJS", "ExpressJS"]
     
-    /*        
-       Form Type: Job Application Form
-            Tasks:
-            1. Form Fields:
-                ○ Full Name (Text)
-                ○ Email (Email)
-                ○ Phone Number (Number)
-                ○ Applying for Position (Dropdown: Developer, Designer, Manager)
-                ○ Relevant Experience (Number of years, visible if "Developer" or "Designer"
-                is selected)
-                ○ Portfolio URL (Text, visible if "Designer" is selected)
-                ○ Management Experience (Text, visible if "Manager" is selected)
-                ○ Additional Skills (Multiple checkboxes: JavaScript, CSS, Python, etc.)
-                ○ Preferred Interview Time (Date and Time Picker)
-            2. Conditional Logic:
-                ○ Show "Relevant Experience" if "Developer" or "Designer" is selected.
-                ○ Show "Portfolio URL" if "Designer" is selected.
-                ○ Show "Management Experience" if "Manager" is selected.
-            3. Validation:
-                ○ Full Name: Required
-                ○ Email: Required and must be a valid email format
-                ○ Phone Number: Required and must be a valid number
-                ○ Relevant Experience: Required if "Developer" or "Designer" is selected, and
-                must be a number greater than 0
-                ○ Portfolio URL: Required if "Designer" is selected, and must be a valid URL
-                ○ Management Experience: Required if "Manager" is selected
-                ○ Additional Skills: At least one skill must be selected
-                ○ Preferred Interview Time: Required and must be a valid date and time
-    */
+
 
   return (
     <div className="h-screen flex items-center justify-center">
